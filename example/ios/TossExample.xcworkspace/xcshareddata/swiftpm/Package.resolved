@@ -1,0 +1,15 @@
+{
+  "originHash" : "80e78598fb64b3330bdbe55a74a6a90ea2805f9626b4a01b419052f03f6f8255",
+  "pins" : [
+    {
+      "identity" : "toss-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/toss/toss-sdk-ios.git",
+      "state" : {
+        "revision" : "d08a90130769246d6e138782076bd680579038e8",
+        "version" : "1.0.5"
+      }
+    }
+  ],
+  "version" : 3
+}
