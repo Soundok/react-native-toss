@@ -88,7 +88,7 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 
 ```xml
 <activity
-    android:name="com.vivarepublica.loginsdk.activity.AuthCodeHandlerActivity"
+    android:name="com.vivarepublica.loginsdk.activity.TossAuthCodeHandlerActivity"
     android:exported="true"
     android:launchMode="singleTask">
 
@@ -230,6 +230,13 @@ import type {
   TossLoginCancelledResult,
 } from 'react-native-toss';
 ```
+
+## Native SDKs
+
+이 라이브러리는 아래 토스 공식 네이티브 SDK를 래핑합니다:
+
+- iOS: [toss/toss-sdk-ios](https://github.com/toss/toss-sdk-ios)
+- Android: [toss/toss-login-android-sdk](https://github.com/toss/toss-login-android-sdk)
 
 ## Contributing
 
