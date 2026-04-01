@@ -12,7 +12,7 @@ React Native wrapper for Toss Login SDK (iOS & Android)
 또한 앱인토스 서비스를 운영하는 데 필요한 약관과 동의문, 연결 끊기 콜백 정보도 함께 등록할 수 있어요.
 
 <p align="center">
-  <img src=".github/images/toss-login-screenshot.png" width="300" alt="토스 로그인 화면" />
+  <img src=".github/images/toss-login-screenshot.png" alt="토스 로그인 화면" />
 </p>
 
 ## 요구 사항
