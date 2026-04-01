@@ -2,6 +2,19 @@
 
 React Native wrapper for Toss Login SDK (iOS & Android)
 
+[![npm version](https://img.shields.io/npm/v/react-native-toss.svg)](https://www.npmjs.com/package/react-native-toss)
+[![license](https://img.shields.io/npm/l/react-native-toss.svg)](https://github.com/Soundok/react-native-toss/blob/main/LICENSE)
+
+## 토스 로그인이란?
+
+토스 로그인은 토스 계정으로 빠르고 안전하게 로그인할 수 있는 기능이에요.\
+로그인 과정에서 사용자에게 어떤 정보 제공에 동의받을지 직접 설정할 수 있어요.\
+또한 앱인토스 서비스를 운영하는 데 필요한 약관과 동의문, 연결 끊기 콜백 정보도 함께 등록할 수 있어요.
+
+<p align="center">
+  <img src=".github/images/toss-login-screenshot.png" width="300" alt="토스 로그인 화면" />
+</p>
+
 ## 요구 사항
 
 | Platform | 최소 버전 |
@@ -50,7 +63,7 @@ cd ios && pod install
 
 로그인 후 앱으로 돌아오기 위해 URL Scheme을 추가하세요:
 
-**Xcode > [Info] > [URL Types] > [URL Schemes]** 에 `toss{APP_KEY}` 입력
+**Xcode > [Info] > [URL Types] > [URL Schemes]** 에 `toss{YOUR_APP_KEY}` 입력
 
 예: 앱 키가 `AB12CD34EF56GH78`이면 → `tossAB12CD34EF56GH78`
 
@@ -99,12 +112,12 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 
         <data
             android:host="oauth"
-            android:scheme="toss${NATIVE_APP_KEY}" />
+            android:scheme="toss{YOUR_APP_KEY}" />
     </intent-filter>
 </activity>
 ```
 
-`${NATIVE_APP_KEY}`를 실제 앱 키로 교체하세요.
+`{YOUR_APP_KEY}`를 실제 앱 키로 교체하세요.
 
 > Toss Android SDK 의존성과 토스앱 설치 확인을 위한 `<queries>` 태그는 라이브러리에 포함되어 있어 별도 설정이 필요 없습니다.
 > 만약 프로젝트에서 `repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)`를 사용 중이라면, `settings.gradle`에 `maven { url 'https://jitpack.io' }`를 추가해주세요.
@@ -116,7 +129,7 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 ```tsx
 import { TossLogin } from 'react-native-toss';
 
-// iOS, Android 모두 필수
+// 앱 시작 시 호출 (iOS, Android 모두 필수)
 TossLogin.configure('YOUR_APP_KEY');
 ```
 
@@ -153,47 +166,7 @@ async function handleTossLogin() {
 }
 ```
 
-### 전체 예제
-
-```tsx
-import React from 'react';
-import { Alert, Button, View } from 'react-native';
-import { TossLogin } from 'react-native-toss';
-
-export default function App() {
-  React.useEffect(() => {
-    TossLogin.configure('YOUR_APP_KEY');
-  }, []);
-
-  const onPressLogin = async () => {
-    const available = await TossLogin.isLoginAvailable();
-
-    if (!available) {
-      Alert.alert('토스앱이 설치되어 있지 않습니다.', '토스앱을 설치하시겠습니까?', [
-        { text: '취소' },
-        { text: '설치', onPress: () => TossLogin.moveToBridgePageForNoApp() },
-      ]);
-      return;
-    }
-
-    const result = await TossLogin.login();
-
-    if (result.type === 'success') {
-      Alert.alert('로그인 성공', `Auth Code: ${result.authCode}`);
-    } else if (result.type === 'cancelled') {
-      Alert.alert('로그인 취소');
-    } else {
-      Alert.alert('로그인 실패', result.message);
-    }
-  };
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
-      <Button title="토스로 로그인" onPress={onPressLogin} />
-    </View>
-  );
-}
-```
+> 전체 예제는 [example](example) 디렉토리를 참고하세요.
 
 ## API
 
@@ -230,6 +203,10 @@ import type {
   TossLoginCancelledResult,
 } from 'react-native-toss';
 ```
+
+## 관련 문서
+
+- [토스 로그인 연동 문서](https://developers-apps-in-toss.toss.im/login/store-login.html)
 
 ## Native SDKs
 
