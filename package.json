@@ -1,6 +1,6 @@
 {
   "name": "react-native-toss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native wrapper for Toss Login SDK",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
