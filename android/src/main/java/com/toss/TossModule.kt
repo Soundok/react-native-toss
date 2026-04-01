@@ -3,14 +3,14 @@ package com.toss
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.vivarepublica.loginsdk.TossLoginController
-import com.vivarepublica.loginsdk.TossLoginResult
+import com.vivarepublica.loginsdk.model.TossLoginResult
 import com.vivarepublica.loginsdk.TossSdk
 
 class TossModule(reactContext: ReactApplicationContext) :
   NativeTossSpec(reactContext) {
 
   override fun configure(appKey: String) {
-    TossSdk.init(reactApplicationContext, appKey)
+    TossSdk.init(appKey)
   }
 
   override fun isLoginAvailable(promise: Promise) {
@@ -37,7 +37,7 @@ class TossModule(reactContext: ReactApplicationContext) :
         is TossLoginResult.Error -> {
           promise.reject(result.error.code, result.error.message)
         }
-        is TossLoginResult.Cancel -> {
+        TossLoginResult.Cancelled -> {
           promise.reject("CANCELLED", "User cancelled login")
         }
       }
@@ -47,7 +47,7 @@ class TossModule(reactContext: ReactApplicationContext) :
   override fun moveToBridgePageForNoApp() {
     // Android에서는 토스앱 미설치 시 Play Store로 이동합니다.
     val activity = currentActivity ?: return
-    TossLoginController.moveToBridgePageForNoApp(activity)
+    TossLoginController.moveToPlaystore(activity)
   }
 
   override fun handleOpenUrl(url: String, promise: Promise) {
