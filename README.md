@@ -9,7 +9,7 @@ React Native wrapper for Toss Login SDK (iOS & Android)
 
 토스 로그인은 토스 계정으로 빠르고 안전하게 로그인할 수 있는 기능이에요.\
 로그인 과정에서 사용자에게 어떤 정보 제공에 동의받을지 직접 설정할 수 있어요.\
-또한 앱인토스 서비스를 운영하는 데 필요한 약관과 동의문, 연결 끊기 콜백 정보도 함께 등록할 수 있어요.
+또한 서비스를 운영하는 데 필요한 약관과 동의문, 연결 끊기 콜백 정보도 함께 등록할 수 있어요.
 
 <p align="center">
   <img src=".github/images/toss-login-screenshot.png" alt="토스 로그인 화면" />
