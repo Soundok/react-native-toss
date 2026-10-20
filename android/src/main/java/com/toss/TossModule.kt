@@ -14,7 +14,7 @@ class TossModule(reactContext: ReactApplicationContext) :
   }
 
   override fun isLoginAvailable(promise: Promise) {
-    val activity = currentActivity
+    val activity = reactApplicationContext.currentActivity
     if (activity == null) {
       promise.resolve(false)
       return
@@ -23,7 +23,7 @@ class TossModule(reactContext: ReactApplicationContext) :
   }
 
   override fun login(policy: String?, promise: Promise) {
-    val activity = currentActivity
+    val activity = reactApplicationContext.currentActivity
     if (activity == null) {
       promise.reject("NO_ACTIVITY", "Activity is not available")
       return
@@ -46,7 +46,7 @@ class TossModule(reactContext: ReactApplicationContext) :
 
   override fun moveToBridgePageForNoApp() {
     // Android에서는 토스앱 미설치 시 Play Store로 이동합니다.
-    val activity = currentActivity ?: return
+    val activity = reactApplicationContext.currentActivity ?: return
     TossLoginController.moveToPlaystore(activity)
   }
 
